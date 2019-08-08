@@ -25,6 +25,32 @@ day 4
 
 
 
+##
+survey relative applicaton PicSee Lihi.io reurl 
+
+PicSee
+
+會員方案 有提供額外服務
+成效追蹤頁面 ??
+可追蹤 點擊來源 : by UTM
+Facebook讚數累計 : ??
+使用者是用 手機 or 電腦 : detect dvice screen size or var x = "User-agent header sent: " + navigator.userAgent;
+點擊來源地圖: use ip to record where the click from
+可以抓網站圖: 不知道抓圖的根據是 ?? 可自訂圖片
+每小時點讚統計: 另創一個table 紀錄點擊的短網址(FK) and 時間戳
+
+Lihi.io 
+
+AB test 分流: 紀錄點擊數, 利用%2 決定前往哪個網站
+可帶入UTM
+可埋 pixel/GTM
+圖表: 時間and訪客數 , useragent and 訪客數 , global map darker with more visitors
+
+
+reurl
+
+可插入UTM
+可以導入QRCode
 
 
 

@@ -7,3 +7,25 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+body{
+    // background: red;
+    text-align: center;
+}
+
+body,input{
+    font: 2rem Tahoma, serif;
+    
+}
+
+input{
+    padding: 10px;
+    background: #fff;
+    border: 1px slid #ccc;
+    margin: 0;
+}
+
+input[type="url"]{
+    width: 300px;
+}

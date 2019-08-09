@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
-use App\link;
+use App\Link;
 
 class LinkController extends Controller
 {

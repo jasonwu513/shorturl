@@ -16,3 +16,5 @@
 // });
 
 Route::get('/', 'shortUrlController@index')->name('home');
+Route::post('/make', 'LinkController@make')->name('make');
+Route::get('/{code}', 'LinkController@redirectTo')->name('redirectTo');

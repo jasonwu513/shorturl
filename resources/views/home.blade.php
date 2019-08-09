@@ -10,10 +10,32 @@
 <body>
     <div class="container">
         <h1 class="title">Shorten your URL.</h1>
-        <form action="" method="post">
-            <input type="url" name="url" placeholder="ENTER your URL" >
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+
+
+        <form action="{{ url('make') }}" method="post">
+            {{ csrf_field() }}
+            <input type="text" name="url" placeholder="ENTER your URL" >
             <input type="submit" value="Shorten">
         </form>
+
+
+        @if(!empty($shortenUrl))
+            <h2>Your shorten URI is</h2>
+            <a href="{{$shortenUrl}}"> {{$shortenUrl}} </a>
+        @endif
+        @if(!empty($notFound))
+            <h2>{{$notFound}}</h2>
+        @endif
     </div>
 </body>
 </html>

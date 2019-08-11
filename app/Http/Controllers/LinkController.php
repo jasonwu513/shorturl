@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Link;
+use App\Click;
 
 class LinkController extends Controller
 {
@@ -61,6 +62,9 @@ class LinkController extends Controller
         echo $findOrigin;
         if ($findOrigin) {
             //轉址到對應的網站;
+            $ip =  $_SERVER['REMOTE_ADDR'];
+            // echo $findOrigin->id;
+            $recordClick = Click::create(['ip' => $ip , 'link_id' => $findOrigin->id ]) ;
             return redirect($findOrigin->url);
         }else{
             return view('home') -> with('notFound' , 'OOPS 找不到您所輸入的網址' );

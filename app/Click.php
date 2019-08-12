@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Click extends Model
 {
-    protected $fillable = ['ip' , 'link_id'];
+    protected $fillable = ['ip', 'country', 'city' , 'link_id'];
 }

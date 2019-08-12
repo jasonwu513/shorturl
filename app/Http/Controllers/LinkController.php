@@ -64,7 +64,20 @@ class LinkController extends Controller
             //轉址到對應的網站;
             $ip =  $_SERVER['REMOTE_ADDR'];
             // echo $findOrigin->id;
-            $recordClick = Click::create(['ip' => $ip , 'link_id' => $findOrigin->id ]) ;
+            $ip_data = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));
+
+            if($ip_data && $ip_data->geoplugin_countryName != null){
+                $country = $ip_data->geoplugin_countryCode;
+                $city = $ip_data->geoplugin_city;
+                $recordClick = Click::create(['ip' => $ip, 'country' => $country , 'city' => $city   , 'link_id' => $findOrigin->id]) ;
+            } else {
+                $country = "unknown";
+                $city = "unknown";
+                $recordClick = Click::create(['ip' => $ip, 'country' => $country , 'city' => $city   , 'link_id' => $findOrigin->id]) ;
+                // echo $country;
+            }
+
+
             return redirect($findOrigin->url);
         }else{
             return view('home') -> with('notFound' , 'OOPS 找不到您所輸入的網址' );

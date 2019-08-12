@@ -16,6 +16,8 @@ class CreateClicksTable extends Migration
         Schema::create('clicks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('ip');
+            $table->string('country');
+            $table->string('city');
             $table->integer('link_id')->unsigned();
             $table->foreign('link_id')->references('id')->on('links');
             $table->timestamps();

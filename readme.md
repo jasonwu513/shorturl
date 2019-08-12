@@ -1,9 +1,9 @@
-## About this Project
+## 關於這個專案
 
 1.create a url shorten application
 2.try to merge laravel admin
 
-## Estimate schedule
+## 預計的schedule
 
 day 1
 1. Search for related technologies 2hr
@@ -17,46 +17,144 @@ day 2
 3. test
 
 day 3
-1. study Laravel admin 4hr
-2. test Laravel admin 4hr
+1. study Laravel admin 4hr (use about 1hr)
+2. test Laravel admin 4hr  (use about 3hr 2hour at set config for upload file)
 
 day 4 
-1. merge Laravel admin and the app 8hr;
+1. merge Laravel admin and the app 8hr (use about 2 hour);
 
 
 
-##
-survey relative applicaton PicSee Lihi.io reurl 
+## 搜尋類似軟體功能 PicSee Lihi.io reurl .
 
-PicSee
+### PicSee
 
-會員方案 有提供額外服務
-成效追蹤頁面 ??
-可追蹤 點擊來源 : by UTM
-Facebook讚數累計 : ??
-使用者是用 手機 or 電腦 : detect dvice screen size or var x = "User-agent header sent: " + navigator.userAgent;
-點擊來源地圖: use ip to record where the click from
-可以抓網站圖: 不知道抓圖的根據是 ?? 可自訂圖片
-每小時點讚統計: 另創一個table 紀錄點擊的短網址(FK) and 時間戳
+會員能有提供額外服務:
 
-Lihi.io 
+1. 成效追蹤頁面: 不確定實際功能
+2. Facebook讚數累計 : use fb FQL (need to check)
+3. 追蹤 點擊來源 : by UTM
+4. 使用者是用 手機 or 電腦 : detect dvice screen size or var x = "User-agent header sent: " + navigator.userAgent;
+5. 點擊來源地圖: use ip to record where the click from
+6. 可以抓網站圖: 不知道抓圖的根據是 ?? 可自訂圖片
+7. 每小時點讚統計: 另創一個table 紀錄點擊的短網址(FK) and 時間戳
 
-AB test 分流: 紀錄點擊數, 利用%2 決定前往哪個網站
-可帶入UTM
-可埋 pixel/GTM
-圖表: 時間and訪客數 , useragent and 訪客數 , global map darker with more visitors
+### Lihi.io 
 
-
-reurl
-
-可插入UTM
-可以導入QRCode
+1. AB test 分流: 紀錄點擊數, 利用%2 決定前往哪個網站
+2. 可帶入UTM
+3. 可埋 pixel/GTM
+4. 圖表: 時間and訪客數 , useragent and 訪客數 , global map darker with more visitors
 
 
+### reurl
+
+1. 可插入UTM
+2. 可以導入QRCode: can use google api 
 
 
+安裝
 
+1. 將專案複製到目的資料夾
+```
+git clone https://github.com/jasonwu513/shorturl.git
+```
 
+2. 安裝會用到的套件
+```
+composer install
+```
+
+3. 針對專案設定資料庫 and 資料庫使用者
+```
+mysqladmin -u root password
+create database shorturl;
+CREATE USER 'shorturl'@'localhost' IDENTIFIED BY 'yourpassword';
+GRANT ALL PRIVILEGES ON shorturl.* TO ‘shorturl’@'localhost’;
+
+```
+
+4. 設定 .env 檔案
+```
+根據環境設定.env file 
+```
+
+5. 產生專案的 key
+```
+php artisan key:generate
+```
+
+6. 用migration 產生資料庫
+```
+php artisan migrate
+```
+
+如果出現錯誤
+```
+[PDOException]
+SQLSTATE[42000]: Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes
+```
+
+調整預設資料長度
+
+>  app/Providers/AppServiceProvider.php
+
+at head add below content
+
+```php
+use Illuminate\Support\Facades\Schema;
+
+```
+and in boot function add
+```php
+public function boot()
+{
+    Schema::defaultStringLength(191);
+}
+```
+
+將全部資料庫丟掉重新生成
+
+```
+php artisan migrate:fresh
+```
+
+7. 參考以下資料安裝 laravel admin
+> https://laravel-admin.org/docs/zh/installation
+
+8. > config/filesystems.php  進行 laravel admin 設定
+
+```
+        'admin' => [
+            'driver'     => 'local',
+            'root'       => public_path('upload'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/upload/',
+        ],
+```
+
+9. 根據路徑 設定 nginx or Apache Document Root
+
+10. 設定DNS
+
+## 使用說明 (User)
+
+1. 在瀏覽器網址輸入 https://yaoshou365.com/
+
+2. 將想要縮短的網址填入並送出
+![user1](https://imgur.com/EaxhQSz)
+
+3. 複製產生的短網址並使用
+![user2](https://imgur.com/1okc92w)
+
+## 使用說明 (Admin)
+
+1. 在瀏覽器網址輸入 https://yaoshou365.com/admin/ 使用密碼登入
+
+2. 點擊左方 Link Icon
+![admin1](https://imgur.com/QsJAOUV)
+1. 瀏覽資料並進行編輯
+![admin2](https://imgur.com/UJTCX2Q)
 
 
 

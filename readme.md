@@ -142,19 +142,19 @@ php artisan migrate:fresh
 1. 在瀏覽器網址輸入 https://yaoshou365.com/
 
 2. 將想要縮短的網址填入並送出
-![user1](https://imgur.com/EaxhQSz)
+![user1](https://imgur.com/EaxhQSz.png)
 
 3. 複製產生的短網址並使用
-![user2](https://imgur.com/1okc92w)
+![user2](https://imgur.com/1okc92w.png)
 
 ## 使用說明 (Admin)
 
 1. 在瀏覽器網址輸入 https://yaoshou365.com/admin/ 使用密碼登入
 
 2. 點擊左方 Link Icon
-![admin1](https://imgur.com/QsJAOUV)
+![admin1](https://imgur.com/QsJAOUV.png)
 1. 瀏覽資料並進行編輯
-![admin2](https://imgur.com/UJTCX2Q)
+![admin2](https://imgur.com/UJTCX2Q.png)
 
 
 
